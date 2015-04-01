@@ -4,7 +4,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,8 +31,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         map = mapFragment.getMap();
         map.setOnMyLocationChangeListener(myLocationChangeListener);
 
-        Button loc_btn = (Button) findViewById(R.id.button);
+        ImageButton loc_btn = (ImageButton) findViewById(R.id.button);
+        ImageButton loc_btn2 = (ImageButton) findViewById(R.id.button2);
         loc_btn.setOnClickListener(this);
+        loc_btn2.setOnClickListener(this);
     }
 
     @Override
@@ -55,6 +57,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(getApplicationContext(), "Localizando posición", Toast.LENGTH_SHORT).show();
             LatLng position = new LatLng(map.getMyLocation().getLatitude(),map.getMyLocation().getLongitude());
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 13));
+        }
+        else if(targetId == R.id.button2)
+        {
+            Toast.makeText(getApplicationContext(), "Mi localización es: " + map.getMyLocation().getLatitude()+ "," + map.getMyLocation().getLongitude(), Toast.LENGTH_SHORT).show();
         }
     }
 

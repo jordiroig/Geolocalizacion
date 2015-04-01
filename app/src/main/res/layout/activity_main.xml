@@ -10,13 +10,28 @@
         android:layout_height="wrap_content"
         android:name="com.google.android.gms.maps.MapFragment"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="X"
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/button"
-        android:layout_gravity="right|top" />
+        android:layout_gravity="right|top"
+        android:src="@mipmap/navigation"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:tint="#ff26a9e0"
+        android:alpha="1" />
 
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/button2"
+        android:layout_gravity="right|top"
+        android:src="@mipmap/chat"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/button"
+        android:tint="#ff26a9e0" />
 
 </FrameLayout>
