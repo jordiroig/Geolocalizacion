@@ -47,11 +47,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             public void onLocationChanged(Location location) {          //listener cuando la posición ha cambiado
+                Double lat = location.getLatitude();                    //Obtenemos la posición
+                Double lng = location.getLongitude();
+                position = new LatLng(lat, lng);                        //Guardamos la posición
                 if(firstattempt && map != null)                         //solo entramos la primera vez que cambia la posición
                 {
                     firstattempt = false;
-                    Double lat = location.getLatitude();
-                    Double lng = location.getLongitude();
                     Random randomGenerator = new Random();
                     double random1 = randomGenerator.nextInt(40) - 20; //Valor aleatorio entre -20 i +20
                     double random2 = randomGenerator.nextInt(40) - 20; //Valor aleatorio entre -20 i +20
@@ -61,7 +62,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                             .position(new LatLng(lat + random1, lng + random2))
                             .title("Trabajo"));
                     Toast.makeText(getApplicationContext(), "Localización inicial", Toast.LENGTH_SHORT).show();
-                    position = new LatLng(lat, lng);    //Guardamos la posición
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 13)); //movemos la camara a la posición (con zoom 13)
                     loc_btn.setEnabled(true);       //Activamos los botones
                     loc_btn2.setEnabled(true);
@@ -90,7 +90,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         criteria.setBearingRequired(false);             //no es necesaria la orientación
         criteria.setSpeedRequired(false);               //no es necesaria la velocidad
         String bestProvider = locationManager.getBestProvider(criteria, false);         //Obtenemos el mejor provider segur los criterios
-        locationManager.requestLocationUpdates(bestProvider, 0, 0, locationListener);   //Escuchamos los cambios de posición
+        locationManager.requestLocationUpdates(bestProvider, 0, 0, locationListener);   //Escuchamos los cambios de posición con la mayor frecuencia posible
     }
 
     @Override
